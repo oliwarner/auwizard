@@ -65,7 +65,7 @@ var wizard_data = {
 				{
 					"choice": "Ubuntu tries to load the desktop but dumps me in a terminal",
 					"title": "This could be driver related...",
-					"description": "",
+					"description": "When we've seen things like this before, often the user hasn't installed the correct driver...<br>Are you sure that you've got the correct driver installed?",
 					"handler": "choice",
 					"choices": [
 						{
