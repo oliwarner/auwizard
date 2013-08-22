@@ -10,13 +10,16 @@ I'm looking for people to help build out the `wizard_data` JSON inside the wizar
 This is what really drives the whole project. And here's how it works.
 
  - The whole thing revolves around a series of "steps".
- - Each step has a `handler`
- - Each handler *can* expect further data. Some dont.
+ - A step is just a dictionary or associative array (depending on where you grew up). 
+   A `{}` object.
+ - Each step has a `handler` whide denotes what this step will do.
+ - Each type of handler *can* expect further data. Some don't.
  - Each handler can specify tags that apply to that stage.
  - Each handler can add data to a post that's being built in the background.
- - At the end of the wizard (or if the user hits the `ask` handler) the post and the tags are applied to the real form.
+ - At the end of the wizard (or if the user hits the `ask` handler) the post 
+   and the tags are applied to the real form.
 
-The handlers and their expectations:
+####The handlers and their expectations:
 
  - `choice` expects an array of choices (each one is a step) and each choice can have a `choice` string (big text) and `choice_description` (subtitle).
  - `hardware_picker` is designed to pick one vendor/device ID and search AU for it. It expects a `code` string to tell the user to run a command (and correctly label it in the post).
