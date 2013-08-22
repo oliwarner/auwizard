@@ -4,6 +4,8 @@ Ask Ubuntu Wizard Userscript
 This is a pilot wizard to test the viability of a first-line wizard 
 on the /ask/ page. The project is by Oli, one of the AU moderators.
 
+![](http://i.stack.imgur.com/czpN9.png)
+
 I'm looking for people to help build out the `wizard_data` JSON inside the wizard. 
 This is what really drives the whole project. And here's how it works.
 
