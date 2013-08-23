@@ -8,8 +8,8 @@
 // @grant       GM_xmlhttpRequest
 // @grant       GM_log
 // @grant		GM_getResourceText
-// @resource	wizard_data   https://raw.github.com/oliwarner/auwizard/master/wizard_data.2.json
-// @resource	wizard_styles https://raw.github.com/oliwarner/auwizard/master/styles.1.css
+// @resource	wizard_data   https://raw.github.com/oliwarner/auwizard/017701ecee24dd7569c63472829a952dda433846/wizard_data.json
+// @resource	wizard_styles https://raw.github.com/oliwarner/auwizard/017701ecee24dd7569c63472829a952dda433846/styles.css
 // ==/UserScript==
 
 var $ = unsafeWindow.jQuery;
