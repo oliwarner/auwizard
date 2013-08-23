@@ -371,8 +371,21 @@ Subsystem: Hewlett-Packard Company Device [103c:143c]\n\n\n\
 		// Leaves a nice message for the user so the understand what happened.
 		step = unsafeWindow.step;
 
+		msg = "The wizard has closed either because you asked for it or because it's out of options. ";
+		if (wiz.post) msg += "The data the wizard collected has for pre-formatted and added to your post. ";
+		msg += "It's over to you now. Write the best question you possibly can. Fully explain what the problem is and list any answers you've already tried.<br>";
+		$("<div class=\"wizardExit\">" + msg + "</div>")
+			.prependTo($("#question-form"))
+			.append(
+				$('<a href="">Or click here to restart the wizard.</a>')
+					.on('click', function(e) {
+						e.preventDefault();
+						restart();
+						$('.wizardExit').remove();
+					})
+			);
 		msg = (!wiz.post) ? "We're sorry the wizard couldn't help you this time. Please fill in the form below with as much detail as you can manage." : "We have added collected data to the form below but please spend some time describing your problem in as much detail as possible.";
-		$("#question-form").prepend($("<div class=\"wizardExit\">" + typogrify(msg) + "</div>"));
+		$("#question-form").prepend();
 
 		$('#wmd-input').val(wiz.post);
 		$("#tagnames").val(wiz.tags.join(', '));
@@ -486,7 +499,7 @@ function restart() {
 		.appendTo(wizardContainer)
 		.on('click', function(e) {
 			e.preventDefault();
-			bail();
+			stepChange({'handler':'ask'});
 		});
 
 	restartLink = $('<a class="bottomlink" href="#">Restart the wizard.</a>')
