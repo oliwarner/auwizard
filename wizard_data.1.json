@@ -1,0 +1,124 @@
+{
+	"title": "&ldquo;Technical support speaking.<br/>Have you tried turning it off and on again?&rdquo;",
+	"description": "This wizard will try to identify the most common problems and if it fails, it will help you to build a high quality question that people can (hopefully) answer. Start by locating your problem below...",
+	"handler": "choice",
+	"choices": [
+		{
+			"choice": "Problems Booting",
+			"choice_description": "Including unprompted restarts, halts and unpassable error messages.",
+			"title": "How far through the boot do you get?",
+			"handler": "choice",
+			"choices": [
+				{
+					"choice": "Missing OS or Grub error",
+					"handler": "qa",
+					"qa": "88384",
+					"fail": { "handler": "ask" },
+					"tags": ["grub",],
+				},
+				{
+					"choice": "Ubuntu hangs on the loading screen",
+					"handler": "qa",
+					"qa": "162075",
+					"fail": { "handler": "ask" },
+				},
+				{
+					"choice": "Ubuntu tries to load the desktop but dumps me in a terminal",
+					"title": "This could be driver related...",
+					"description": "When we've seen things like this before, often the user hasn't installed the correct driver...<br>Are you sure that you've got the correct driver installed?",
+					"handler": "choice",
+					"choices": [
+						{
+							"choice": "How do I install the correct graphics drivers?",
+							"handler": "link",
+							"link": "choices[3]", // links to graphics
+						},
+						{
+							"choice": "No, I've definitely got the right driver",
+							"handler": "ask",
+						},
+					],
+				},
+				{
+					"choice": "I see the desktop but can't do anything",
+				},
+			],
+		},
+		{
+			"choice": "Post-boot System Crashes",
+			"choice_description": "Including Kernel panics, frozen screens and frozen mice.<br>This is not for single application crashes.<br>This is currently just a test of the QA handler",
+			"handler": "qa",
+			"qa": "36930",
+			"fail": { "handler": "ask" },
+		},
+		{
+			"choice": "Networking Problems",
+			"choice_description": "Including wireless driver installation, no available networks, disconnects and slow Internet.",
+			"title": "What sort of networking problem?",
+			"handler": "choice",
+			"choices": [
+				{
+					"choice": "I can't connect to my wireless router",
+					"title": "What networking device are you using?",
+					"description": "Please open a terminal and run ${CODE}. Copy the full output into the following input input and click Submit",
+					"handler": "hardware_picker",
+					"code": "lspci -nnk | grep -i net -A2",
+					"fail": { "handler": "ask" },
+				},
+				{
+					"choice": "I <em>can</em> connect but cannot view websites",
+					"title": "We need some diagnostic information to be able to answer your question",
+					"description": "Please run all of the following commands in a terminal window and copy and paste their output into the boxes provided below. When you click submit a question will be built for you including this data to help people help you.",
+					"handler": "commands",
+					"commands": [
+						"ifconfig",
+						"ping -c4 8.8.8.8",
+						"ping -c4 google.com",
+						"route -n",
+						"nm-tool",
+					],
+					"outcome": { "handler": "ask" },
+				},
+			],
+		},
+		{
+			"choice": "Graphics Drivers",
+			"choice_description": "This section will help you identify your graphics card(s) and install the correct drivers.",
+			"title": "Let's start by identifing your graphics setup!",
+			"description": "Please open a terminal and type ${CODE} and copy it into the following box.",
+			"code": "lspci -nnk | grep -i VGA -A1",
+			"handler": "graphics_picker",
+			"outcomes": {
+				"optimus": {
+					"title": "This is a Nvidia Optimus system!",
+					"handler": "qa",
+					"qa": "36930",
+					"fail": { "handler": "ask" },
+					"tags": ["nvidia", "nvidia-optimus"],
+				},
+				"amdhybrid": {
+					"title": "This is an AMD Crossfire Hybrid system!",
+					"handler": "qa",
+					"qa": "205112",
+					"fail": { "handler": "ask" },
+					"tags": ["amd", "amd-hybrid-crossfire"],
+				},
+				"nvidia": {
+					"title": "This is a Nvidia system!",
+					"fail": { "handler": "ask" },
+					"tags": ["nvidia", ],
+				},
+				"amd": {
+					"title": "This is an AMD/ATI system!",
+					"fail": { "handler": "ask" },
+					"tags": ["ati", ],
+				},
+				"intel": {
+					"title": "This is an Intel system!",
+					"fail": { "handler": "ask" },
+					"tags": ["intel-graphics",],
+				},
+			},
+		},
+	],
+}
