@@ -1,0 +1,22 @@
+#wizardContainer {display:none;padding:30px 40px 0;font-size:150%;text-align:center}
+#wizardContainer h1 {font-size:190%;margin-bottom:15px;line-height:1.1em}
+#wizardContainer #step_description {line-height:1.3em}
+#wizardContainer .helplink {font-size:80%}
+#wizardContainer .clear {clear:both}
+#wizardContainer a.bottomlink {padding:20px 0;font-size:120%;display:block;text-align:left;float:left}
+#wizardContainer a#revert {float:right;text-align:right}
+#wizardContainer .choicelist {list-style:none;margin:0;padding:0}
+#wizardContainer .choicelist li {float:left;width:430px;padding:10px 0;margin:0}
+#wizardContainer .choicelist li:nth-child(odd) {margin:0 20px 0 0;clear:left}
+#wizardContainer a.choice {display:block;width:390px;font-size:170%;color:#000;padding:25px 20px;font-weight:normal;text-align:center;border-radius:10px;box-shadow:0 1px 3px rgba(000,000,000,0.5), inset 0 -1px 0 rgba(255,255,255,0.7);background:#eee;line-height:1em}
+#wizardContainer a.choice > span {display:block;font-size:43%;font-weight:normal;line-height:1.4em;padding:10px 30px 0}
+#wizardContainer a.choice:hover {text-decoration:none;background:#fff}
+#wizardContainer .pastebox {width:100%;background:#eee;font-size:100%;margin-bottom:20px;height:95px}
+#wizardContainer .search-results {margin:15px 81px;text-align:left;float:left;font-size:67%}
+#wizardContainer .search-result:nth-child(n+6) {display:none}
+#wizardContainer h3 {text-align:left;font-size:140%}
+#wizardContainer h3 code {background:0}
+#wizardContainer pre {text-align:left}
+#wizardContainer #loadingMsg {font-size:400%;margin:20px;text-align:center}
+.wizardExit {background:#eee;padding:15px}
+.questionframe {font-size:67%;max-height:500px;overflow:auto;overflow-x:hidden;text-align:left;margin:0 -50px 15px}
